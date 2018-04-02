@@ -39,6 +39,13 @@ public class DBconfig {
 		hibernateProp.put("hibernate.dialect","org.hibernate.dialect.OracleDialect");
 		
 		LocalSessionFactoryBuilder factoryBuilder=new LocalSessionFactoryBuilder(getDataSource());
+        factoryBuilder.addProperties(hibernateProp);
+		
+		
+		System.out.println("Creating SessionFactory Bean");
+		return factoryBuilder.buildSessionFactory();
+	}
+	
 	
 	@Bean(name="txManager")
 	public HibernateTransactionManager getTransactionManager(SessionFactory sessionFactory)
@@ -49,4 +56,4 @@ public class DBconfig {
 }
 
 
-}
+
